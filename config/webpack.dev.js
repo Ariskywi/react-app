@@ -15,10 +15,12 @@ const verdor = '/public/' + manifest.name.replace('_', '.') + '.js';
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 const paths = {
+  demo: resolveApp('demo/demo'),
+  appDemo: resolveApp('demo'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('config/index.html'),
-  appIndexJs: resolveApp('src/index.js'),
+  appIndexJs: resolveApp('src/index'),
   appSrc: resolveApp('src'),
   appNodeModules: resolveApp('node_modules'),
 }
@@ -55,11 +57,12 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
     app: [
-    // 更好的更新体验
-    require.resolve('react-dev-utils/webpackHotDevClient'),
-    require.resolve('./polyfills'),
-    paths.appIndexJs,
-  ]},
+      // 更好的更新体验
+      require.resolve('react-dev-utils/webpackHotDevClient'),
+      require.resolve('./polyfills'),
+      paths.demo
+    ]
+  },
   output: {
     path: paths.appBuild,
     // Add /* filename */ comments to generated require()s in the output.
@@ -124,7 +127,7 @@ module.exports = {
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
-        include: paths.appSrc,
+        include: [paths.appSrc, paths.appDemo],
         loader: require.resolve('babel-loader'),
         options: {
           plugins: [
@@ -192,7 +195,7 @@ module.exports = {
       filename: 'index.html',
       vendor: verdor
     }),
-    // new webpack.optimize.ModuleConcatenationPlugin(),   // 作用域提升
+    new webpack.optimize.ModuleConcatenationPlugin(),    // 作用域提升
     new webpack.NamedModulesPlugin(),                    // 更新时返回文件名
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProgressPlugin({ profile: false }),
