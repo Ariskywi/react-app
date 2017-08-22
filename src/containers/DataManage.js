@@ -3,23 +3,23 @@ import { connect } from 'react-redux'
 
 class DataManage extends Component {
 
-  componentDidMount() {
+    componentDidMount() {
 
-  }
+    }
 
-  render() {
-    return (
-      <div>数据管理页面</div>
-    )
-  }
+    render() {
+        return (
+            <div>数据管理页面</div>
+        )
+    }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  location: state.routerReducer.location
+    location: state.routerReducer.location
 })
 
 const mapDispatchToProps = {
-  // navigate
+    // navigate
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataManage)

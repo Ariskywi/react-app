@@ -7,7 +7,7 @@ export const STANDARD_ASYNC = 'STANDARD_ASYNC'
 export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE'
 
 function action(type, payload = {}) {
-  return {type, ...payload}
+    return {type, ...payload}
 }
 
 function createRequestTypes(base) {

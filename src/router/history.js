@@ -1,9 +1,9 @@
 import { createBrowserHistory, createHashHistory } from 'history'
 
 export const HashHistory = createHashHistory({
-  // configuration
+    // configuration
 })
 
 export const BrowserHistory = createBrowserHistory({
-  // configuration
+    // configuration
 })

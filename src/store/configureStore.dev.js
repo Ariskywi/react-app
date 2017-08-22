@@ -9,26 +9,26 @@ import DevTools from '../containers/DevTools'
 const sagaMiddleware = createSagaMiddleware()
 const routeMiddleware = routerMiddleware(HashHistory)
 const configureStore = preloadedState => {
-  const store = createStore(
-    rootReducer,
-    preloadedState,
-    compose(
-      applyMiddleware(sagaMiddleware, routeMiddleware),
-      DevTools.instrument()
+    const store = createStore(
+        rootReducer,
+        preloadedState,
+        compose(
+            applyMiddleware(sagaMiddleware, routeMiddleware),
+            DevTools.instrument()
+        )
     )
-  )
 
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers').default
-      store.replaceReducer(nextRootReducer)
-    })
-  }
+    if (module.hot) {
+        // Enable Webpack hot module replacement for reducers
+        module.hot.accept('../reducers', () => {
+            const nextRootReducer = require('../reducers').default
+            store.replaceReducer(nextRootReducer)
+        })
+    }
 
-    store.runSaga = sagaMiddleware.run
-    store.close = () => store.dispatch(END)
-    return store
+        store.runSaga = sagaMiddleware.run
+        store.close = () => store.dispatch(END)
+        return store
 }
 
 export default configureStore

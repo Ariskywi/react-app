@@ -8,15 +8,15 @@ import { HashHistory } from '../router/history'
 const sagaMiddleware = createSagaMiddleware()
 const routeMiddleware = routerMiddleware(HashHistory)
 const configureStore = preloadedState => {
-  const store = createStore(
-    rootReducer,
-    preloadedState,
-    applyMiddleware(sagaMiddleware, routeMiddleware)
-  )
+    const store = createStore(
+        rootReducer,
+        preloadedState,
+        applyMiddleware(sagaMiddleware, routeMiddleware)
+    )
 
-  store.runSaga = sagaMiddleware.run
-  store.close = () => store.dispatch(END)
-  return store
+    store.runSaga = sagaMiddleware.run
+    store.close = () => store.dispatch(END)
+    return store
 }
 
 export default configureStore

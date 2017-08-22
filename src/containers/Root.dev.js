@@ -6,14 +6,14 @@ import App from '../containers/App'
 import DevTools from './DevTools'
 
 const Root = ({ store, history }) => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <div>
-        <App />
-        <DevTools />
-      </div>
-    </ConnectedRouter>
-  </Provider>
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <div>
+                <App />
+                <DevTools />
+            </div>
+        </ConnectedRouter>
+    </Provider>
 )
 
 export default Root

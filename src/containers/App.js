@@ -6,27 +6,27 @@ import {HashHistory} from '../router/history'
 
 class App extends Component {
 
-  constructor(props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
-  }
+    constructor(props) {
+        super(props)
+        this.handleChange = this.handleChange.bind(this)
+    }
 
-  componentDidMount() {
+    componentDidMount() {
 
-  }
+    }
 
-  handleChange(menuKey) {
-    HashHistory.push(`/${menuKey}`)
-  }
+    handleChange(menuKey) {
+        HashHistory.push(`/${menuKey}`)
+    }
 
-  render() {
-    return (
-      <div id="App">
-        <Nav onChange = {this.handleChange} />
-        { MainRoutes }
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div id="App">
+                <Nav onChange = {this.handleChange} />
+                { MainRoutes }
+            </div>
+        )
+    }
 }
 
 export default connect()(App)
