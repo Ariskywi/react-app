@@ -33,11 +33,11 @@ module.exports = {
         library: "[name]_[chunkhash]"
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
-        }),
+        // new webpack.DefinePlugin({
+        //     'process.env': {
+        //         NODE_ENV: JSON.stringify('production')
+        //     }
+        // }),
         new webpack.DllPlugin({
             context: __dirname,
             path: path.resolve(__dirname, "../public", "manifest_[name].json"),
@@ -47,6 +47,6 @@ module.exports = {
         //     $: 'zepto'
         // }),
         new webpack.ProgressPlugin({ profile: false }),
-        new webpack.optimize.UglifyJsPlugin(),
+        // new webpack.optimize.UglifyJsPlugin(),
     ],
 };
